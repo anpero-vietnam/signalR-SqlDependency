@@ -10,10 +10,13 @@ For all Insert/Update/Delete operation on monitored table, TableDependency recei
 How to user user SqlTableDependency
 
 1) Install-Package SqlTableDependency -Version 8.5.4
+
 2) Add new connection string with name ="connectionString"
+
 3) Update <httpRuntime targetFramework="4.6.2" or higher to using web socket
 update database 
 3) ALTER DATABASE [DataBaseName] SET ENABLE_BROKER
+
 4) ALTER DATABASE [DataBaseName] SET TRUSTWORTHY ON
 create table to test SqlTableDependency 
 Create table Users(
