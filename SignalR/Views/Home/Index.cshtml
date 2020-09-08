@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<button id="sendMessage">Trigger hub function</button>
+<button id="callHubService">Trigger hub function from MVC control</button>
+<hr />
+<a href="/SqlDependency">Click here to test SQLDependency</a>
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var service1 = $.connection.SampleHubName;
+            service1.client.helloWord = function (rs) {
+                alert(rs);
+            };
+
+            $.connection.hub.start().done(function () {
+                $('#sendMessage').click(function () {
+                    // Call the Send method on the hub, mothod name fist character mustbe lower case ex : HelloServerFunction > helloServerFunction.
+                    service1.server.helloServerFunction();
+                });
+            });
+            $("#callHubService").click(function () {
+                $.ajax({
+                    url: "/home/CallHelloWordService"
+                });
+            });
+
+            $("#sendMessengeTouser").click(function () {
+                service1.server.sendMessengeToUser($("#userId").val(), $("#messenge").val());
+            });
+        });
+
+
+    </script>
+
+}

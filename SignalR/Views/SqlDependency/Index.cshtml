@@ -1,0 +1,60 @@
+﻿
+<p style="display:none;">
+    <div>
+        The database have been <strong id="lbDbStatus">...</strong> user<br />
+        User name: <strong id="lbUserName">...</strong><br />
+        Status: <strong id="lbStatus">...</strong><br />
+        User id: <strong id="lbUserId">...</strong>
+    </div>
+</p>
+<p>
+    <div>update database to test SqlTableDependency</div>
+    <div>1) ALTER DATABASE [DataBaseName] SET ENABLE_BROKER</div>
+    <div>2) ALTER DATABASE [DataBaseName] SET TRUSTWORTHY ON</div>
+    <div>3) create table to test SqlTableDependency</div>
+    <div>4) Insert,update,delete data to test</div>
+
+    <div>
+        Create table Users(
+        UserName nvarchar(300),
+        UserId [uniqueidentifier] NOT NULL,
+        Status varchar(30)
+        )
+    </div>
+</p>
+@section scripts{
+
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var ticker = $.connection.userTrackingHub;
+            // this function only triger for userId logger in rs.UserId. see UserTrackingService.cs. in this example logger userid ='1' see Startup.cs
+            ticker.client.updateUserTrigger = function (rs) {
+                $("#lbDbStatus").html("Update")
+                $("#lbUserName").html(rs.UserName)
+                $("#lbStatus").html(rs.Status)
+                $("#lbUserId").html(rs.UserId)
+            };
+
+            ticker.client.addUserTrigger = function (rs) {
+                $("#lbDbStatus").html("Add")
+                $("#lbUserName").html(rs.UserName)
+                $("#lbStatus").html(rs.Status)
+                $("#lbUserId").html(rs.UserId)
+            };
+
+            // this function only triger for userId logger in rs.UserId. see UserTrackingService.cs. in this example logger userid ='1' see Startup.cs
+            ticker.client.removeUserTrigger = function (rs) {
+                $("#lbDbStatus").html("remove")
+                $("#lbUserName").html(rs.UserName)
+                $("#lbStatus").html(rs.Status)
+                $("#lbUserId").html(rs.UserId)
+            };
+
+            $.connection.hub.start();
+        });
+
+    </script>
+
+}
