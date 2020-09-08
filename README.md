@@ -28,5 +28,5 @@ Create table Users(
 # Optimization
 
 1) Open Startup.cs to see how to set or get userId
-_
 
+If you need help don't hesitate to mail me: thangtd.hn@gmail.com
