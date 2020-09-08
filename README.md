@@ -1,4 +1,4 @@
-# Signalr simple example and Signalr + SqlTableDependency
+# SignalR simple example and SignalR + SqlTableDependency
  1) Signalr simple example
  2) Signalr simple example trigger Hub function from MVC Control
  3) Simple set userid and send messege to logger by userid
