@@ -13,7 +13,7 @@ How to user user SqlTableDependency
 
 2) Add new connection string with name ="connectionString"
 
-3) Update <httpRuntime targetFramework="4.6.2" or higher to using web socket
+3) Update .net Framework="4.6.2" or higher to using web socket
 update database 
 3) ALTER DATABASE [DataBaseName] SET ENABLE_BROKER
 
